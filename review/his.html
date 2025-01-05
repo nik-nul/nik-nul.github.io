@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>his</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /*
+credit: https://gist.github.com/killercup/5917178 
+some modifications are made.
+*/
+
+html {
+    font-size: 100%;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    color: #444;
+    font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+    font-size: 12px;
+    line-height: 1.7;
+    padding: 1em;
+    margin: auto;
+    max-width: 42em;
+    background: #fefefe;
+  }
+  
+  a {
+    color: #0645ad;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #0b0080;
+  }
+  
+  a:hover {
+    color: #06e;
+  }
+  
+  a:active {
+    color: #faa700;
+  }
+  
+  a:focus {
+    outline: thin dotted;
+  }
+  
+  *::-moz-selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #000;
+  }
+  
+  *::selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #000;
+  }
+  
+  a::-moz-selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #0645ad;
+  }
+  
+  a::selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #0645ad;
+  }
+  
+  p {
+    margin: 1em 0;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #111;
+    line-height: 125%;
+    margin-top: 2em;
+    font-weight: normal;
+  }
+  
+  h4, h5, h6 {
+    font-weight: bold;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+  }
+  
+  h2 {
+    font-size: 2em;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+  }
+  
+  h4 {
+    font-size: 1.2em;
+  }
+  
+  h5 {
+    font-size: 1em;
+  }
+  
+  h6 {
+    font-size: 0.9em;
+  }
+  
+  blockquote {
+    color: #666666;
+    margin: 0;
+    padding-left: 3em;
+    border-left: 0.5em #EEE solid;
+  }
+  
+  hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #eee;
+    margin: 1em 0;
+    padding: 0;
+  }
+  
+  pre, code, kbd, samp {
+    color: #000;
+    font-family: monospace, monospace;
+    _font-family: 'courier new', monospace;
+    font-size: 0.98em;
+  }
+  
+  pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  b, strong {
+    font-weight: bold;
+  }
+  
+  dfn {
+    font-style: italic;
+  }
+  
+  ins {
+    background: #ff9;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  mark {
+    background: #ff0;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  
+  sup {
+    top: -0.5em;
+  }
+  
+  sub {
+    bottom: -0.25em;
+  }
+  
+  ul, ol {
+    margin: 1em 0;
+    padding: 0 0 0 2em;
+  }
+  
+  li p:last-child {
+    margin-bottom: 0;
+  }
+  
+  ul ul, ol ol {
+    margin: .3em 0;
+  }
+  
+  dl {
+    margin-bottom: 1em;
+  }
+  
+  dt {
+    font-weight: bold;
+    margin-bottom: .8em;
+  }
+  
+  dd {
+    margin: 0 0 .8em 2em;
+  }
+  
+  dd:last-child {
+    margin-bottom: 0;
+  }
+  
+  img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+  }
+  
+  figure {
+    display: block;
+    text-align: center;
+    margin: 1em 0;
+  }
+  
+  figure img {
+    border: none;
+    margin: 0 auto;
+  }
+  
+  figcaption {
+    font-size: 0.8em;
+    font-style: italic;
+    margin: 0 0 .8em;
+  }
+  
+  table {
+    margin-bottom: 2em;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  
+  table th {
+    padding: .2em 1em;
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+  }
+  
+  table td {
+    padding: .2em 1em;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    vertical-align: top;
+  }
+  
+  .author {
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  @media only screen and (min-width: 480px) {
+    body {
+      font-size: 14px;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    body {
+      font-size: 21px;
+    }
+  }
+  @media print {
+    * {
+      background: transparent !important;
+      color: black !important;
+      filter: none !important;
+      -ms-filter: none !important;
+    }
+  
+    body {
+      font-size: 12pt;
+      max-width: 100%;
+    }
+  
+    a, a:visited {
+      text-decoration: underline;
+    }
+  
+    hr {
+      height: 1px;
+      border: 0;
+      border-bottom: 1px solid black;
+    }
+  
+    a[href]:after {
+      content: " (" attr(href) ")";
+    }
+  
+    abbr[title]:after {
+      content: " (" attr(title) ")";
+    }
+  
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+      content: "";
+    }
+  
+    pre, blockquote {
+      border: 1px solid #999;
+      padding-right: 1em;
+      page-break-inside: avoid;
+    }
+  
+    tr, img {
+      page-break-inside: avoid;
+    }
+  
+    img {
+      max-width: 100% !important;
+    }
+  
+    @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+  }
+  
+    @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+  }
+  
+    p, h2, h3 {
+      orphans: 3;
+      widows: 3;
+    }
+  
+    h2, h3 {
+      page-break-after: avoid;
+    }
+  }
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#近现代史纲要重点">近现代史纲要重点</a>
+<ul>
+<li><a href="#革命胜利原因意义经验">7.4.3 革命胜利原因意义经验</a>
+<ul>
+<li><a href="#中国革命胜利的原因">中国革命胜利的原因</a></li>
+<li><a href="#中国革命胜利的意义">中国革命胜利的意义</a></li>
+<li><a href="#基本经验">基本经验</a></li>
+</ul></li>
+<li><a href="#cpc争取和平民主的豆蒸">7.1.1
+cpc争取和平民主的豆蒸</a></li>
+<li><a href="#中国人民奋起抗击">6.2 中国人民奋起抗击</a></li>
+<li><a href="#遵义会议">5.2.2 遵义会议</a></li>
+<li><a href="#农村包围城市武装夺取政权">5.1.3
+农村包围城市，武装夺取政权</a></li>
+<li><a href="#中国中产党成立的意义">4.2.3 中国中产党成立的意义</a></li>
+<li><a href="#十月革命如何推进转向">4.1.2 十月革命如何推进转向</a></li>
+<li><a href="#新文化运动">4.1.1 新文化运动</a></li>
+<li><a href="#辛亥革命">3.2.1 辛亥革命</a></li>
+<li><a href="#三民主义">3.1.1 三民主义</a></li>
+<li><a href="#戊戌维新">2.3.1 戊戌维新</a></li>
+<li><a href="#洋务运动">2.2 洋务运动</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="近现代史纲要重点">近现代史纲要重点</h1>
+<p>[TOC]</p>
+<h2 id="革命胜利原因意义经验">7.4.3 革命胜利原因意义经验</h2>
+<h3 id="中国革命胜利的原因">中国革命胜利的原因</h3>
+<ul>
+<li>广大人民和各界人士的广泛参与和大力支持</li>
+<li>中国共产党的领导</li>
+<li>先烈全党各族人民的长期牺牲奋斗</li>
+<li>国际无产阶级和人民群众的支持</li>
+</ul>
+<h3 id="中国革命胜利的意义">中国革命胜利的意义</h3>
+<ul>
+<li>结束了资本-帝国主义同封建统治的联合压迫剥削</li>
+<li>结束了国家战乱频仍四分五裂的局面</li>
+<li>实现了民族独立和人民解放</li>
+<li>改变了中国社会发展方向，为实现新民-&gt;社的转变扫清了障碍，创造了政治前提；为国家腹腔人民幸福伟大复兴开辟道路</li>
+<li>是反法西斯战争胜利后最重大的事件，改变了世界政治格局，壮大了和平民主和社的力量，鼓舞了。。。豆蒸</li>
+<li>形成了猫思想，是对马列主义发展的贡献，是和实际的结合</li>
+</ul>
+<h3 id="基本经验">基本经验</h3>
+<ul>
+<li>马列基本原理同实际结合</li>
+<li>三大法宝：统一战线，武装斗争，党的建设</li>
+<li>革命的根本问题是政权问题，必须工人阶级领导的工农联盟为基础的人民民主专政，必须同国际革命力量结合</li>
+</ul>
+<h2 id="cpc争取和平民主的豆蒸">7.1.1 cpc争取和平民主的豆蒸</h2>
+<ul>
+<li>双十协定基本方针：长期合作，坚决避免内战</li>
+</ul>
+<h2 id="中国人民奋起抗击">6.2 中国人民奋起抗击</h2>
+<ul>
+<li>华北事变后矛盾激化</li>
+<li>cpc救亡图存全民抗战号召和地下党组织领导</li>
+<li>学生游行，反对华北自治，打倒日帝，停止内战，直至对外，被国民党镇压</li>
+<li>八一宣言公开发表，主张停止内战</li>
+<li>批评左倾冒险主义和关门主义</li>
+<li>西安事变，联红抗日</li>
+</ul>
+<h2 id="遵义会议">5.2.2 遵义会议</h2>
+<ul>
+<li>34年10月第五次反围剿失败，左倾冒险主义错误，开始长征</li>
+<li>初期又犯了退却中的逃跑主义错误，中央红军强渡湘江后人数锐减，军队不满</li>
+<li>35年1月在黔北重镇遵义举行政治局扩大会议：遵义会议</li>
+<li>会议内容：
+<ul>
+<li>集中解决了具有决定性意义的组织和军事问题</li>
+<li>增选毛为中央政治局常委</li>
+<li>张闻天起草《第五次反围剿总结的决议》</li>
+<li>而后：
+<ul>
+<li>张闻天代替博古负总的责任</li>
+<li>毛泽东是周恩来军事指挥上的帮助者</li>
+<li>毛泽东周恩来王稼祥三人军事小组</li>
+</ul></li>
+</ul></li>
+<li>会议意义：
+<ul>
+<li>是党的历史上第一个性命攸关的转折点</li>
+<li>事实上确立了毛在党和红军中的领导地位</li>
+<li>开始确立以毛为代表的吗主义正确路线在党中央的领导地位</li>
+<li>开始形成以毛为核心的第一代领导集体</li>
+<li>在最危急的时刻挽救了党，挽救了红军，挽救了革命</li>
+<li>坚持真理，修正错误，确立党中央正确领导，创造性指定实施符合中国革命特点的战略策略</li>
+<li>开启了中国共产党独立自主解决中国革命实际问题的新阶段</li>
+</ul></li>
+</ul>
+<h2 id="农村包围城市武装夺取政权">5.1.3 农村包围城市，武装夺取政权</h2>
+<ul>
+<li>国际共产主义运动史的经验：革命工作以城市为中心</li>
+<li>但是革命夺取核心城市的起义都失败了</li>
+<li>大多转移到了远离国民党统治中心的农村，发动农民开展游击，进行土地革命，创建工农政权</li>
+<li>朱毛领导的井冈山革命根据地的豆蒸是大革命失败后革命正确方向的集中体现</li>
+<li>毛在率领起义军到达井冈山后在湘赣边境成立了第一个红色政权</li>
+<li>朱德陈毅的红军在南昌起义失败后同湘南起义农军转义到井冈山地区与毛会师</li>
+<li><strong>井冈山革命根据地的意义：点燃了工农割据的星星之火，为中国革命开辟出了农村包围城市，武装夺取政权的正确道路</strong></li>
+<li>《中国的红色政权为什么能够存在？》《井冈山的豆蒸》：农业主要经济形式，论证了存在条件和割据思想</li>
+<li>《星星之可以辽源》红色xxx的发展是中国无产阶级领导之下农民豆蒸的最高形式和半殖民地农民豆蒸的必然结果</li>
+<li>《反对本本主义》没有调查没有发言权，结合实际情况，开辟新道路</li>
+<li>古田会议的内容：
+<ul>
+<li>确立思想建党，政治建军原则</li>
+<li>加强党的思想建设的重要性</li>
+<li>红军是执行革命政治任务的武装集团，必须服从党的领导，全心全意为党的纲领路线政策奋斗</li>
+<li>红军必须负担大涨筹款和群众工作任务，必须加强政治工作</li>
+</ul></li>
+<li>古田会议的意义：
+<ul>
+<li>是党和红军建设纲领性文件，是建设史的里程碑</li>
+<li>确立了吗主义建党建军原则</li>
+<li>解决了如何保持党的无产阶级先锋队性质和建设党领导的新型人民军队的问题</li>
+<li>区别于旧，对革命新道路开辟有重要意义</li>
+</ul></li>
+<li>反围剿。。。</li>
+<li>土地革命：
+<ul>
+<li>依靠贫农中农，限制富农，保护中小工商业者，消灭地主，平分土地，抽肥补瘦</li>
+</ul></li>
+</ul>
+<h2 id="中国中产党成立的意义">4.2.3 中国中产党成立的意义</h2>
+<ul>
+<li>是开天辟地的大事变</li>
+<li>反帝反封的豆蒸有了先进正当作为凝聚力量的领导核心，扭转了以前不行的局面</li>
+<li>一成立就实现共产主义最高目标理想，肩负了伟大复兴的历史责任</li>
+<li>人民踏上了民族独立人民解放的道路，开启了国家富强人民幸福的征程</li>
+<li>坚持真理，坚守理想，践行初心，担当使命，不怕牺牲，英勇豆蒸，对党忠诚，不负人民的建党精神</li>
+<li>深刻改变了近代以后中华民族发展方向和进程，人和民族的前途命运，世界发展的趋势割据</li>
+</ul>
+<h2 id="十月革命如何推进转向">4.1.2 十月革命如何推进转向</h2>
+<ul>
+<li>俄国国情与中国相似（封建压迫，经济文化落后）</li>
+<li>苏联号召反对帝国主义，平等对待中国。放弃特权引发震动</li>
+<li>工农的广泛调动赢得革命胜利给予启示</li>
+</ul>
+<h2 id="新文化运动">4.1.1 新文化运动</h2>
+<ul>
+<li>拥护民主（资产阶级民主）和科学</li>
+<li>反对旧道德，批判孔子，反对文言文，倡导民主反对专职</li>
+<li>在封建主义占主导的条件下有进步意义</li>
+<li>但是：
+<ul>
+<li>批孔是为了发展资本主义肃清障碍，但是资产阶级共和国行不通，因而不有效思想认识改造</li>
+<li>改造国民性放在有限，但是离开社会环境的革命实践是行不通的</li>
+<li>没有吗主义的批判精神，使用资产阶级方法，看待问题片面形式主义</li>
+</ul></li>
+</ul>
+<h2 id="辛亥革命">3.2.1 辛亥革命</h2>
+<ul>
+<li>保路运动：11年清政府与四国集团签订协议出卖诶帝国主义，劫掠商股，引发保路运动，四川开枪，忍无可忍</li>
+<li>11年武昌起义，，，</li>
+<li>辛亥革命的历史意义：
+<ul>
+<li>推翻了封建势力政治代表，帝国主义在中国代理人的清朝，沉重打击了反动势力，不再能建立稳固政权</li>
+<li>结束了两千年封建君主专制，建立了资产阶级共和政府，民主共和观念深入人心</li>
+<li>推动了思想解放，爱国热情和民族觉醒</li>
+<li>推动了社会变革，在经济思想社会风俗发生积极变化</li>
+<li>打击了帝国主义侵略势力，推动了亚洲民族解放运动高涨</li>
+</ul></li>
+</ul>
+<h2 id="三民主义">3.1.1 三民主义</h2>
+<ul>
+<li>05年以兴中会和华兴会在日本成立中国同盟会，第一个资产阶级革命的全国性政党</li>
+<li>民族主义：废止满清政府的民族歧视政策，民族平等。但是没有明确把汉族军阀官僚地主列入，有可乘之机；对帝国主义认识不清，幻想承认不平等条约以获得承认</li>
+<li>民权主义：建立资产阶级民主共和国，但是忽略了广大劳动群众的地位，人民民主权利难以保证</li>
+<li>民生主义：平均地权，但是没有触及封建土地所有制，不能满足需求，难以发动工农</li>
+</ul>
+<h2 id="戊戌维新">2.3.1 戊戌维新</h2>
+<ul>
+<li>宣传：
+<ul>
+<li>1895年进京赶考联合举人公车上书</li>
+<li>著书立说：新学伪经考，变法通议，天演论</li>
+<li>介绍经验：日本，俄国，波兰</li>
+<li>办学会：强学会，南学会，保国会</li>
+<li>设学堂</li>
+<li>办报纸：时务报，国闻报</li>
+</ul></li>
+<li>论战：
+<ul>
+<li>要不要变法</li>
+<li>要不要兴民权，设议院，君主立宪</li>
+<li>要不要废八股改科举兴西学</li>
+</ul></li>
+</ul>
+<p>（optional）</p>
+<ul>
+<li>意义：
+<ul>
+<li>爱国救亡运动，推动了民族觉醒</li>
+<li>资产阶级改良运动，在政治经济冲击了封建制度</li>
+<li>思想启蒙，宣传资产阶级社会政治和自然科学，动摇了封建思想，有利于民主思想传播，打破封建文化独占，教育也有意义</li>
+</ul></li>
+<li>失败：
+<ul>
+<li>不敢否定封建，政治上自上而下改良，资产阶级和开明士绅；经济上未触及封建土地所有制的基础；思想上还要托古改制</li>
+<li>帝国主义抱有幻想</li>
+<li>惧怕人民，脱离人民</li>
+</ul></li>
+</ul>
+<h2 id="洋务运动">2.2 洋务运动</h2>
+<ul>
+<li>内容：
+<ul>
+<li>近代企业：
+<ul>
+<li>军工：安庆军械所，江南制造总局，金陵机器局，福州船政局</li>
+<li>民用：天津电报局，矿务局，织布局</li>
+</ul></li>
+<li>新式海军</li>
+<li>新式学校，派遣留学生</li>
+</ul></li>
+<li>作用：
+<ul>
+<li>自强求富，发展军工，对工业和民族资产阶级的兴起起到了作用</li>
+<li>资本主义生产方式的出现冲击重本抑没，西方不再当作奇技淫巧，有利于资本主义经济发展和社会风气的改变</li>
+</ul></li>
+<li>失败原因：
+<ul>
+<li>有封建性，巩固封建统治。资本主义生产关系和封建上层建筑不相容</li>
+<li>对列强有依赖，与虎谋皮</li>
+<li>管理腐朽，不讲效益，贪污腐败。侵吞公款</li>
+</ul></li>
+</ul>
+</body>
+</html>
