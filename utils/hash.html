@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <script type="text/javascript" src="https://xkres.nju.edu.cn/products/jwfw/xsxkapp/public/js/des.min.js"></script>
+    <input type="text" id="str" placeholder="Enter your password to encode" />
+    <input type="button" value="Get"
+        onclick='document.getElementById("res").textContent = btoa(strEnc(document.getElementById("str").value, "this", "password", "is"));' />
+    <p id="res"></p>
+</body>
+
+</html>
