@@ -1,0 +1,38 @@
+name: Fetch Daily News
+
+on:
+  schedule:
+    - cron: '0 16-23,0-1 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Calculate Yesterday's Date (UTC+8)
+        id: date
+        run: echo "YESTERDAY=$(TZ='Asia/Shanghai' date -d 'yesterday' +%Y-%m-%d)" >> $GITHUB_ENV
+
+      - name: Fetch and Save Content
+        run: |
+          mkdir -p news
+          curl -f -o news/${{ env.YESTERDAY }}.html http://52.184.65.42/preview/${{ env.YESTERDAY }} || true
+
+      - name: Commit and Push if content changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: Add news for ${{ env.YESTERDAY }}"
+          
+          file_pattern: news/${{ env.YESTERDAY }}.html
+          
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
