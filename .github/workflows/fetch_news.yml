@@ -26,12 +26,24 @@ jobs:
           mkdir -p news
           curl -f -o news/${{ env.YESTERDAY }}.html http://52.184.65.42/preview/${{ env.YESTERDAY }} || true
 
+      - name: Update latest.html
+        run: |
+          DAILY_FILE="news/${{ env.YESTERDAY }}.html"
+          if [ -f "$DAILY_FILE" ]; then
+            cp "$DAILY_FILE" latest.html
+            echo "Successfully updated latest.html"
+          else
+            echo "Daily file not found. Skipping update of latest.html."
+          fi
+
       - name: Commit and Push if content changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs: Add news for ${{ env.YESTERDAY }}"
           
-          file_pattern: news/${{ env.YESTERDAY }}.html
+          file_pattern: |
+            news/${{ env.YESTERDAY }}.html
+            latest.html
           
           commit_user_name: github-actions[bot]
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
