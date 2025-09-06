@@ -41,9 +41,7 @@ jobs:
         with:
           commit_message: "docs: Add news for ${{ env.YESTERDAY }}"
           
-          file_pattern: |
-            news/${{ env.YESTERDAY }}.html
-            news/latest.html
+          file_pattern: news/*.html
           
           commit_user_name: github-actions[bot]
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
