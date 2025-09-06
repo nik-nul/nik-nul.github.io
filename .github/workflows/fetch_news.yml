@@ -30,7 +30,7 @@ jobs:
         run: |
           DAILY_FILE="news/${{ env.YESTERDAY }}.html"
           if [ -f "$DAILY_FILE" ]; then
-            cp "$DAILY_FILE" latest.html
+            cp "$DAILY_FILE" news/latest.html
             echo "Successfully updated latest.html"
           else
             echo "Daily file not found. Skipping update of latest.html."
