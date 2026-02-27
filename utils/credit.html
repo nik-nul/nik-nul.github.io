@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJU 总学分推算工具</title>
+    <style>
+        :root {
+            --nju-purple: #62266d;
+            --bg-color: #f4f7f6;
+        }
+        body {
+            font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            color: var(--nju-purple);
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.4rem;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--nju-purple);
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--nju-purple);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-top: 1rem;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        #result-area {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 6px;
+            background-color: #f9f0ff;
+            display: none;
+            text-align: center;
+        }
+        .result-val {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--nju-purple);
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>学分推算工具</h2>
+    
+    <div class="input-group">
+        <label>当前总 GPA</label>
+        <input type="number" id="gTotal" step="0.0001" placeholder="例如: 4.515">
+    </div>
+
+    <div class="input-group">
+        <label>去掉一门课后的 GPA</label>
+        <input type="number" id="gRemain" step="0.0001" placeholder="例如: 4.521">
+    </div>
+
+    <div class="input-group">
+        <label>去掉的那门课的学分</label>
+        <input type="number" id="cRemoved" step="1" placeholder="例如: 2">
+    </div>
+
+    <div class="input-group">
+        <label>去掉的那门课的分数 (百分制)</label>
+        <input type="number" id="sRemoved" step="1" placeholder="例如: 85">
+    </div>
+
+    <button onclick="calculate()">开始计算</button>
+
+    <div id="result-area">
+        <span style="font-size: 0.9rem; color: #666;">推算总学分为</span>
+        <span id="output" class="result-val">0</span>
+        <span style="font-size: 0.8rem; color: #999;">(结果仅供参考)</span>
+    </div>
+</div>
+
+<script>
+    function calculate() {
+        const G_total = parseFloat(document.getElementById('gTotal').value);
+        const G_remain = parseFloat(document.getElementById('gRemain').value);
+        const c_removed = parseFloat(document.getElementById('cRemoved').value);
+        const S_removed = parseFloat(document.getElementById('sRemoved').value);
+
+        if (isNaN(G_total) || isNaN(G_remain) || isNaN(c_removed) || isNaN(S_removed)) {
+            alert("请填入所有数据");
+            return;
+        }
+
+        if (Math.abs(G_total - G_remain) < 0.001) {
+            alert("两次 GPA 差异过小，无法精确计算。请确保输入的 GPA 位数足够多。");
+            return;
+        }
+
+        const totalCredits = (c_removed * (S_removed / 20 - G_remain)) / (G_total - G_remain);
+
+        const resultArea = document.getElementById('result-area');
+        const output = document.getElementById('output');
+
+        resultArea.style.display = 'block';
+        output.innerText = totalCredits;
+    }
+</script>
+
+</body>
+</html>
